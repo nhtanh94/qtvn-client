@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-layout-basic',
-  template: `
-    <app-nav></app-nav>
-    <router-outlet (deactivate)="onDeactivate()"></router-outlet>
-    <!-- <app-download></app-download> -->
-    <!-- <app-footer></app-footer> -->
-  `,
-  styles: ['.root-layout {background-color: #f6f6f6;}'],
+  templateUrl: './basic.component.html',
+  styleUrls: ['./basic.component.less'],
 })
 export class LayoutBasicComponent {
-  constructor() {}
-  onDeactivate(): void {}
+  isCollapsed = true;
+  constructor(private router: Router) {}
+  goLogin() {
+    this.router.navigate(['/user/login']);
+  }
 }

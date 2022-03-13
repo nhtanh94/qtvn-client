@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { RegisterComponent } from './register/register.component';
+import { NgZorroAntdModule } from 'src/app/ng-zoro.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent],
@@ -15,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule,
     ReactiveComponentModule,
+    NgZorroAntdModule,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,63 +1,60 @@
-<section class="login">
-  <div class="box">
-    <div class="text-center login-content">
-      <div>
-        <img
-          class="mb-4"
-          src="./assets/img/booking/logo_login.webp"
-          alt="LOGO YOUMED"
-          width="170"
-          height="152"
-        />
-        <div
-          class="form"
-          *ngIf="activeItemIndex === 0 || activeItemIndex === 1"
-        >
-          <div class="mb-5">
-            <button>Đăng nhập</button>
-            <button>Đăng ký</button>
-          </div>
-          <!-- FORM LOGIN -->
-          <form
-            *ngIf="activeItemIndex === 0"
-            [formGroup]="form"
-            (ngSubmit)="login()"
-            (keyup.enter)="login()"
-          >
-            <div class="mb-5">
-              <input class="b-form" formControlName="username" appNumber />
-              Số điện thoại
-            </div>
-            <div class="mb-5">
-              <input class="b-form" formControlName="password" appNumber />
-              Mật khẩu
-            </div>
-            <input type="checkbox" name="remember" id="remember" checked />
-            <label for="remember"> Ghi nhớ mật khẩu</label><br />
-
-            <!-- [disabled]="!form.valid" -->
-            <button type="submit" size="m" class="w-100 login-button">
-              Đăng nhập
-            </button>
-          </form>
-          <!-- FORM REGISTER -->
-          <app-register
-            *ngIf="activeItemIndex === 1"
-            (evtSwitchTabLogin)="activeItemIndex = 0"
-          ></app-register>
-        </div>
-        <a
-          [routerLink]="['/user/forgot-password']"
-          class="tui-text_bold mt-6 mb-6 d-block text-blue"
-          >Quên mật khẩu</a
-        >
-      </div>
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg">
+    <div class="flex justify-center mb-4">
+      <img
+        class="object-cover max-h-full max-w-full p-4"
+        src="http://www.quoctevina.com/imgs/logo.png"
+      />
     </div>
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      class="login-form"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Vui lòng nhập tên đăng nhập!">
+          <nz-input-group nzPrefixIcon="user">
+            <input
+              type="text"
+              nz-input
+              formControlName="userName"
+              placeholder="Tài khoản"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Vui lòng nhập mật khẩu!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input
+              type="password"
+              nz-input
+              formControlName="password"
+              placeholder="Mật khẩu"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <div nz-row class="login-form-margin">
+        <div nz-col [nzSpan]="12">
+          <label nz-checkbox formControlName="remember">
+            <span>Lưu tài khoản</span>
+          </label>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <a class="login-form-forgot">Quên mật khẩu</a>
+        </div>
+      </div>
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+      >
+        Đăng nhập
+      </button>
+      hoặc
+      <a>đăng ký ngay!</a>
+    </form>
   </div>
-</section>
-<!-- NOTE : Tạm thời ẩn trên mobile -->
-<span
-  class="license text-grey text-center w-100 position-fixed tui-text_body-s-2 z-index-16 d-none-sm"
->
-  © 2021 YouMed. All Rights Reserved.
-</span>
+</div>

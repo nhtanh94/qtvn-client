@@ -10,7 +10,7 @@ export const environment = {
     refreshTokenType: 'auth-refresh',
   },
   url: 'https://youmed.test.davido.vn',
-  apiUrl: 'https://youmed.test.davido.vn/api',
+  apiUrl: 'http://localhost:5000/api',
   adminApiUrl: 'https://youmed.test.davido.vn/admin/api',
 };
 /*

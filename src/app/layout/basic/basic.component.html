@@ -1,0 +1,54 @@
+<nz-layout class="h-screen">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo">
+      <img
+        class="object-cover max-h-full max-w-full p-4"
+        src="http://www.quoctevina.com/imgs/logo.png"
+      />
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-submenu nzTitle="User" nzIcon="user">
+        <ul>
+          <li nz-menu-item>Tom</li>
+          <li nz-menu-item>Bill</li>
+          <li nz-menu-item>Alex</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Team" nzIcon="team">
+        <ul>
+          <li nz-menu-item>Team 1</li>
+          <li nz-menu-item>Team 2</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="file"></i>
+        <span>File</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="flex justify-between">
+        <i
+          class="trigger"
+          nz-icon
+          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          (click)="isCollapsed = !isCollapsed"
+        ></i>
+        <div class="flex flex-row justify-center items-center mx-4">
+          <nz-badge [nzCount]="10" style="margin-right: 24px">
+            <nz-avatar
+              class="bg-green-200 text-green-900"
+              nzText="TA"
+            ></nz-avatar>
+          </nz-badge>
+          <a class="hover:font-bold" (click)="goLogin()">Đăng xuất</a>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer>Bản quyền thuộc quoctevina.com</nz-footer>
+  </nz-layout>
+</nz-layout>

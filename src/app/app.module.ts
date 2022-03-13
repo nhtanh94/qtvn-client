@@ -16,7 +16,11 @@ import {
 } from '@gorniv/ngx-transfer-http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {
+  LocationStrategy,
+  PathLocationStrategy,
+  registerLocaleData,
+} from '@angular/common';
 import { DefaultInterceptor } from './core/net/default.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -24,7 +28,22 @@ import {
   LAZYLOAD_IMAGE_HOOKS,
   ScrollHooks,
 } from 'ng-lazyload-image';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import en from '@angular/common/locales/en';
+import { FormsModule } from '@angular/forms';
+import { NgZorroAntdModule } from './ng-zoro.module';
+import { NZ_ICONS } from 'ng-zorro-antd/icon';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
 
+registerLocaleData(en);
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
+  (key) => antDesignIcons[key]
+);
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -36,12 +55,14 @@ import {
     AppRoutingModule,
     LayoutModule,
     RouterModule,
+    NgZorroAntdModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    FormsModule,
   ],
   declarations: [AppComponent, DebugBannerComponent],
   providers: [
@@ -49,6 +70,8 @@ import {
     { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
     { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks },
     TransferHttpService,
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: NZ_ICONS, useValue: icons },
   ],
   bootstrap: [AppComponent],
 })

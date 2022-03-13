@@ -7,22 +7,20 @@ import {
   LAZYLOAD_IMAGE_HOOKS,
   ScrollHooks,
 } from 'ng-lazyload-image';
+import { NgZorroAntdModule } from '../ng-zoro.module';
 import { LayoutBasicComponent } from './basic/basic.component';
 import { LayoutBlankComponent } from './blank/blank.component';
-import { DownloadComponent } from './download/download.component';
-import { FooterComponent } from './footer/footer.component';
-import { NavComponent } from './nav/nav.component';
 
-const COMPONENTS = [
-  LayoutBasicComponent,
-  LayoutBlankComponent,
-  NavComponent,
-  FooterComponent,
-  DownloadComponent,
-];
+const COMPONENTS = [LayoutBasicComponent, LayoutBlankComponent];
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule, LazyLoadImageModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    LazyLoadImageModule,
+    NgZorroAntdModule,
+  ],
   declarations: [...COMPONENTS],
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
 })

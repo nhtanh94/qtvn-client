@@ -14,7 +14,7 @@ export class BackLoginGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const userIsLogin = this.user.getCurrentUser();
+    const userIsLogin = this.user.getToken();
     if (userIsLogin) return false;
     return true;
   }

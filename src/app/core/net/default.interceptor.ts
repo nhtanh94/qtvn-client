@@ -51,15 +51,6 @@ export class DefaultInterceptor implements HttpInterceptor {
         break;
       case 403:
       case 404:
-      case 500:
-        this.goToErrorPage(`/error/500`, true);
-        break;
-      case 502:
-        this.goToErrorPage(`/error/503`, true);
-        break;
-      case 503:
-        this.goToErrorPage(`/error/503`, true);
-        break;
       default:
         if (ev instanceof HttpErrorResponse) {
           console.warn(
@@ -110,19 +101,19 @@ export class DefaultInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const ob = localStorage.getItem('_tk_hco_bk');
+    const ob = localStorage.getItem('_token');
     let token;
     if (ob) {
-      const user = JSON.parse(ob);
-      token = user.access_token;
+      const myToken = JSON.parse(ob);
+      token = myToken.access_token;
     }
 
     let modReq: any;
     if (token) {
-      const authHeader = 'Bearer ' + token;
+      const authHeader = token;
       const updUrl = {
         url: req.url,
-        headers: req.headers.set('Authorization', authHeader),
+        headers: req.headers.set('x-auth-token', authHeader),
       };
       modReq = req.clone(updUrl);
     } else {

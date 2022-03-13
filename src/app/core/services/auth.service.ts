@@ -14,17 +14,16 @@ export class AuthService extends BaseService<ViewModels, any, any> {
   constructor(
     protected http: TransferHttpService // protected msg: NotificationService
   ) {
-    super(http, environment.apiUrl, 'v4/auth');
+    super(http, environment.apiUrl, 'v1/auth');
   }
 
   // Method GET
   loginWithPassword(
-    phoneNumber: string,
+    email: string,
     password: string
   ): Observable<IResponseV4<CurrentUserVm>> {
-    const body = { phoneNumber, password };
-    const requestURL = `login/password/verify`;
-    const obs = super.postCustomApi(requestURL, body);
+    const body = { email, password };
+    const obs = super.postCustomApi('', body);
     return obs;
   }
 

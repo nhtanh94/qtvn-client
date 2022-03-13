@@ -31,8 +31,8 @@ export class UserService extends BaseService<any, any, any> {
     return;
   }
 
-  getCurrentUser(): any {
-    const ob = localStorage.getItem('_in_hco_bk');
+  getToken(): any {
+    const ob = localStorage.getItem('_token');
     let token;
     if (ob) {
       const user = JSON.parse(ob);

@@ -5,13 +5,12 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [BackLoginGuard] },
+  { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [BackLoginGuard],
 })
 export class UserRoutingModule {}
