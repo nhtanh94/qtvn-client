@@ -1,0 +1,34 @@
+<div
+  *ngIf="!skeleton; else skeletonTmp"
+  class="banner full-width position-relative tui-container tui-container_adaptive"
+  [@fadeIn]
+>
+  <div class="banner-bg">
+    <img
+      src="./assets/img/booking/shutterstock_1203044383_huge.webp"
+      alt="banner"
+      class="w-30 d-md-block d-none"
+    />
+  </div>
+  <div
+    class="banner-content d-flex align-items-center justify-content-center text-center"
+  >
+    <!-- Title -->
+    <div class="mw-90">
+      <h2 class="tui-text_h6 mb-5 title">Tìm nhanh bệnh viện</h2>
+
+      <div class="container position-relative search">
+        <form [formGroup]="form">
+          <input type="text" name="" id="" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #skeletonTmp>
+  <div
+    class="full-width position-relative tui-container tui-container_adaptive"
+  >
+    <div [class.tui-skeleton]="skeleton" class="banner-skeleton mb-4"></div>
+  </div>
+</ng-template>

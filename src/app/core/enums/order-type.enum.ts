@@ -1,0 +1,6 @@
+export enum OrderType {
+  APPOINTMENT = 'APPOINTMENT',
+  BILLING = 'BILLING',
+  PRESCRIPTION = 'PRESCRIPTION',
+  CALL = 'CALL',
+}

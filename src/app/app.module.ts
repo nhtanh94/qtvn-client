@@ -1,36 +1,55 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  BrowserTransferStateModule,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { en_US } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
-import en from '@angular/common/locales/en';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { DebugBannerComponent } from './shared/components/debug-banner/debug-banner.component';
+import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import {
+  TransferHttpModule,
+  TransferHttpService,
+} from '@gorniv/ngx-transfer-http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LayoutModule } from './layout/layout.module';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { DefaultInterceptor } from './core/net/default.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IconsProviderModule } from './icons-provider.module';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-
-registerLocaleData(en);
+import {
+  LazyLoadImageModule,
+  LAZYLOAD_IMAGE_HOOKS,
+  ScrollHooks,
+} from 'ng-lazyload-image';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
+    TransferHttpModule,
+    BrowserTransferStateModule,
     BrowserAnimationsModule,
-    IconsProviderModule,
-    NzLayoutModule,
-    NzMenuModule
+    LazyLoadImageModule,
+    AppRoutingModule,
+    LayoutModule,
+    RouterModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, DebugBannerComponent],
+  providers: [
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
+    { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks },
+    TransferHttpService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

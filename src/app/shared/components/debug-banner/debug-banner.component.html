@@ -1,0 +1,10 @@
+<div
+  *ngIf="
+    environmentName === ENVIRONMENT.LOCAL ||
+    environmentName === ENVIRONMENT.TEST ||
+    environmentName === ENVIRONMENT.STAGING
+  "
+  id="debug-text"
+>
+  <span>{{ environmentName }}</span>
+</div>

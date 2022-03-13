@@ -1,0 +1,5 @@
+export enum TypeMedicalService {
+  APPOINTMENT = 'APPOINTMENT',
+  BILLING = 'BILLING',
+  PRESCRIPTION = 'PRESCRIPTION',
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/images/logo-icon.png",
+          "./assets/images/logo-icon.png",
+          "/assets/images/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "/assets/images/*.*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "/assets/taiga-ui/icons/*.*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "./assets/images/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "./assets/images/*.*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "/index.html",
+          "/bv/index.html",
+          "./index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.*.css",
+          "./*.css",
+          "/*.js",
+          "/*.*.js",
+          "./*.js",
+          "./*.*.js",
+          "/assets/*.png",
+          "/assets/*.jpg",
+          "/assets/*.jpeg",
+          "/assets/*.svg",
+          "/photo/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "/photo/*.*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "/bv/photo/*.*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "./photo/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)",
+          "./photo/*.*..(svg|cur|jpg|jpeg|png|apng|webp|avif|gif)"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+    "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "./assets/**",
+          "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)",
+          "/*.*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)",
+          "./*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)",
+          "./*.*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+        ],
+        "urls": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/ngsw.json",
+          "./favicon.ico",
+          "./bv/favicon.ico",
+          "./index.html",
+          "./manifest.webmanifest",
+          "./ngsw.json"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+        "name": "youmed-api",
+        "urls": [
+          "**//datkham.test.davido.vn**",
+          "**//youmed.test.davido.vn**",
+          "**//datkham.youmed.vn**",
+          "**//youmed.vn**"
+        ],
+        "cacheConfig": {
+          "strategy": "performance",
+          "maxSize": 100,
+          "maxAge": "1h"
+        }
+    }
+  ]
+}
